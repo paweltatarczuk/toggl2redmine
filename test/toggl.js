@@ -27,7 +27,7 @@ describe('Toggl', function() {
       let callback = sinon.spy();
 
       // Run method under test
-      toggl.fetchTimeEntries(callback);
+      toggl.fetchTimeEntries(null, null, callback);
 
       getTimeEntries.restore();
       sinon.assert.calledWith(callback, null, timeEntries.slice(0, 1));

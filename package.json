@@ -25,6 +25,7 @@
     "sinon-chai": "^2.9.0"
   },
   "dependencies": {
+    "async": "^2.4.0",
     "node-redmine": "^0.1.5",
     "toggl-api": "^1.0.1"
   },

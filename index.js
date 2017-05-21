@@ -20,21 +20,27 @@
 
 'use strict';
 
-let app = require('./lib/app');
+let App = require('./lib/app');
 
 /**
  * Returns usage text
  * @return {String}
  */
 function usage() {
-	return 'toggl2redmine <toggl-url> <redmine-url>';
+	return 'toggl2redmine <toggl-key> <redmine-url> <redmine-key> <dd-mm-yyyy>';
 }
 
 // Check arguments
-if (process.argv.len !== 2) {
+if (process.argv.length !== 6) {
 	process.stdout.write(usage());
 	process.exit(1);
 }
 
 // Run app
+let app = new App(
+  process.argv[2],
+  process.argv[3],
+  process.argv[4],
+  process.argv[5]
+);
 app.run();
