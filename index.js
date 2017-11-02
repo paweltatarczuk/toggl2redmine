@@ -27,7 +27,7 @@ let App = require('./lib/app');
  * @return {String}
  */
 function usage() {
-	return 'toggl2redmine <toggl-key> <redmine-url> <redmine-key> <dd-mm-yyyy>';
+	return 'toggl2redmine <toggl-key> <redmine-url> <redmine-key> <mm-dd-yyyy>';
 }
 
 // Check arguments
