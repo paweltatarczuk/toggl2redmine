@@ -78,6 +78,42 @@ describe('Redmine', function() {
         'custom_field_values': {
           14: 'Billable',
         },
+        'comments': ''
+      };
+
+      // Prepare callback
+      let callback = sinon.spy();
+
+      // Run method under test
+      redmine.taskEntryFromToggl(data, callback);
+
+      sinon.assert.calledWith(callback, null, expected);
+    });
+    it(`should convert toggl time entry data into \
+        redmine task entry data with comments`, function() {
+      let data = {
+        'id': 582566690,
+        'wid': 1552930,
+        'pid': 19463126,
+        'billable': false,
+        'start': '2017-04-21T12:19:22+00:00',
+        'stop': '2017-04-21T13:05:14+00:00',
+        'duration': 2752,
+        'description': 'Feature #56060 Kompletne dane testowe : Test',
+        'duronly': false,
+        'at': '2017-04-21T13:05:15+00:00',
+        'uid': 2344416,
+      };
+
+      let expected = {
+        'issue_id': '56060',
+        'spent_on': '2017-04-21',
+        'hours': '0.9',
+        'activity_id': 13,
+        'custom_field_values': {
+          14: 'Billable',
+        },
+        'comments': 'Test'
       };
 
       // Prepare callback
@@ -113,6 +149,7 @@ describe('Redmine', function() {
         'custom_field_values': {
           14: 'Billable',
         },
+        'comments': '',
       };
 
       // Prepare callback
@@ -148,6 +185,7 @@ describe('Redmine', function() {
         'custom_field_values': {
           14: 'NB - Our fault',
         },
+        'comments': '',
       };
 
       // Prepare callback
@@ -184,6 +222,7 @@ describe('Redmine', function() {
         'custom_field_values': {
           14: 'NB - Other',
         },
+        'comments': '',
       };
 
       // Prepare callback
