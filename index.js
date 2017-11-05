@@ -27,20 +27,46 @@ let App = require('./lib/app');
  * @return {String}
  */
 function usage() {
-	return 'toggl2redmine <toggl-key> <redmine-url> <redmine-key> <mm-dd-yyyy>';
+	return 'toggl2redmine ' +
+         '[--group] ' +
+         '<toggl-key> ' +
+         '<redmine-url> ' +
+         '<redmine-key> ' +
+         '<mm-dd-yyyy>';
 }
+
+// Process arguments
+let args = [];
+let group = false;
+
+process.argv.slice(2).forEach(function(arg) {
+  if (arg === '--group') {
+    group = true;
+    return;
+  }
+
+  args.push(arg);
+});
 
 // Check arguments
-if (process.argv.length !== 6) {
-	process.stdout.write(usage());
-	process.exit(1);
+if (args.length !== 4) {
+  process.stdout.write(usage());
+  process.exit(1);
 }
 
+// Prepare options
+let options = {
+  'toggl': {
+    'apiKey': args[0],
+  },
+  'redmine': {
+    'url': args[1],
+    'apiKey': args[2],
+  },
+  'date': args[3],
+  'group': group,
+};
+
 // Run app
-let app = new App(
-  process.argv[2],
-  process.argv[3],
-  process.argv[4],
-  process.argv[5]
-);
+let app = new App(options);
 app.run();
