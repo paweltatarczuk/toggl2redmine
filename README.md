@@ -1,4 +1,4 @@
-# Toggl2Redmine
+# Toggl2Redmine [![Build Status](https://travis-ci.org/trawiasty/toggl2redmine.svg?branch=master)](https://travis-ci.org/trawiasty/toggl2redmine)
 
 Simple tool for migrating Toggle time entries into Redmine as time spents.
 

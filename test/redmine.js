@@ -78,7 +78,7 @@ describe('Redmine', function() {
         'custom_field_values': {
           14: 'Billable',
         },
-        'comments': ''
+        'comments': '',
       };
 
       // Prepare callback
@@ -113,7 +113,7 @@ describe('Redmine', function() {
         'custom_field_values': {
           14: 'Billable',
         },
-        'comments': 'Test'
+        'comments': 'Test',
       };
 
       // Prepare callback
