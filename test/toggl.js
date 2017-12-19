@@ -9,9 +9,11 @@ let toggl = new (require('../lib/toggl'))('secret');
  */
 describe('Toggl', function() {
   /**
-   * Test for 'Toggl#fetchTimeEntries' method without grouping
+   * Test for 'Toggl#fetchTimeEntries' method
+   *   - without grouping
+   *   - without workspace filtering
    */
-  describe('#fetchTimeEntries(false, callback)', function() {
+  describe('#fetchTimeEntries(false, null, callback)', function() {
     it('should return entries without \'redmine\' tag', function() {
       let timeEntries = [
         {id: 1, tags: ['sample-tag']},
@@ -27,7 +29,7 @@ describe('Toggl', function() {
       let callback = sinon.spy();
 
       // Run method under test
-      toggl.fetchTimeEntries(null, null, false, callback);
+      toggl.fetchTimeEntries(null, null, false, null, callback);
 
       getTimeEntries.restore();
       sinon.assert.calledWith(callback, null, timeEntries.slice(0, 1));
@@ -35,9 +37,39 @@ describe('Toggl', function() {
   });
 
   /**
-   * Test for 'Toggl#fetchTimeEntries' method with grouping
+   * Test for 'Toggl#fetchTimeEntries' method
+   *   - without grouping
+   *   - with workspace filtering
    */
-  describe('#fetchTimeEntries(true, callback)', function() {
+  describe('#fetchTimeEntries(false, 1234, callback)', function() {
+    it('should return entries without \'redmine\' tag', function() {
+      let timeEntries = [
+        {id: 1, wid: 1234, tags: ['sample-tag']},
+        {id: 2, wid: '1234', tags: ['redmine']},
+        {id: 3, wid: 4321, tags: ['sample-tag', 'redmine']},
+      ];
+
+      // Create toggl client stub
+      let getTimeEntries = sinon.stub(toggl.client, 'getTimeEntries');
+      getTimeEntries.yields(null, timeEntries);
+
+      // Prepare callback
+      let callback = sinon.spy();
+
+      // Run method under test
+      toggl.fetchTimeEntries(null, null, false, 1234, callback);
+
+      getTimeEntries.restore();
+      sinon.assert.calledWith(callback, null, timeEntries.slice(0, 1));
+    });
+  });
+
+  /**
+   * Test for 'Toggl#fetchTimeEntries' method
+   *   - with grouping
+   *   - without workspace filtering
+   */
+  describe('#fetchTimeEntries(true, null, callback)', function() {
     it('should return entries without \'redmine\' tag', function() {
       let timeEntries = [
         {id: 1, duration: 1000, tags: ['sample-tag']},
@@ -58,7 +90,7 @@ describe('Toggl', function() {
       let callback = sinon.spy();
 
       // Run method under test
-      toggl.fetchTimeEntries(null, null, true, callback);
+      toggl.fetchTimeEntries(null, null, true, null, callback);
 
       // Expected timeEntries
       let expectedTimeEntries = [

@@ -29,6 +29,7 @@ let App = require('./lib/app');
 function usage() {
 	return 'toggl2redmine ' +
          '[--group] ' +
+         '[--wid <wid>]' +
          '<toggl-key> ' +
          '<redmine-url> ' +
          '<redmine-key> ' +
@@ -38,15 +39,23 @@ function usage() {
 // Process arguments
 let args = [];
 let group = false;
+let wid = null;
 
-process.argv.slice(2).forEach(function(arg) {
+for (let i = 2; i < process.argv.length; i++) {
+  let arg = process.argv[i];
+
   if (arg === '--group') {
     group = true;
-    return;
+    continue;
+  }
+
+  if (arg == '--wid') {
+    wid = process.argv[++i]; // Fetch wid and move on
+    continue;
   }
 
   args.push(arg);
-});
+}
 
 // Check arguments
 if (args.length !== 4) {
@@ -65,6 +74,7 @@ let options = {
   },
   'date': args[3],
   'group': group,
+  'wid': wid,
 };
 
 // Run app
