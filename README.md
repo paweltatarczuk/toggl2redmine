@@ -4,10 +4,11 @@ Simple tool for migrating Toggle time entries into Redmine as time spents.
 
 ## Usage
 
-`node index.js [--group] <toggl-api-key> <redmine-url> <redmine-api-key> <date>`
+`node index.js [--group] [--wid <wid>] <toggl-api-key> <redmine-url> <redmine-api-key> <date>`
 
 Options
 - *--group* - enable grouping entries with the same description and tags
+- *--wid <wid>*   - filter time entries by given workspace id
 
 Parameters:
 - *toggl-api-key*   - API key to your Toggl account
