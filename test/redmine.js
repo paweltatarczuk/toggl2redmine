@@ -74,7 +74,6 @@ describe('Redmine', function() {
         'issue_id': '56060',
         'spent_on': '2017-04-21',
         'hours': '0.9',
-        'activity_id': 13,
         'custom_field_values': {
           14: 'Billable',
         },
@@ -109,7 +108,6 @@ describe('Redmine', function() {
         'issue_id': '56060',
         'spent_on': '2017-04-21',
         'hours': '0.9',
-        'activity_id': 13,
         'custom_field_values': {
           14: 'Billable',
         },
@@ -181,7 +179,6 @@ describe('Redmine', function() {
         'issue_id': '40540',
         'spent_on': '2016-12-19',
         'hours': '2.5',
-        'activity_id': 13,
         'custom_field_values': {
           14: 'NB - Our fault',
         },
