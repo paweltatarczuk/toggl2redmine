@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Use by command:
+# $ ./toggl.sh 09.22.2017
+# or simply (current date will be used)
+# $ ./toggl.sh
+
+TOGGLE_API_KEY="<toggle_api_key_here>"
+REDMINE_URL="<redmine_url_here>"
+REDMINE_API_KEY="<redmine_api_key_here>"
+
+# date format = mm.dd.YYYY
+DATE=$1
+if [ $# -eq 0 ]
+    then
+        DATE=$(date +'%m.%d.%Y') # current date
+fi
+
+node index.js --group $TOGGLE_API_KEY $REDMINE_URL $REDMINE_API_KEY $DATE
