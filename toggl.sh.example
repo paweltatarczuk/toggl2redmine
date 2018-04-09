@@ -16,4 +16,4 @@ if [ $# -eq 0 ]
         DATE=$(date +'%m.%d.%Y') # current date
 fi
 
-node index.js $TOGGLE_API_KEY $REDMINE_URL $REDMINE_API_KEY $DATE
+node index.js --group $TOGGLE_API_KEY $REDMINE_URL $REDMINE_API_KEY $DATE
