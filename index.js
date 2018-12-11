@@ -30,6 +30,7 @@ function usage() {
 	return 'toggl2redmine ' +
          '[--group] ' +
          '[--wid <wid>]' +
+         '[--pid <pid>]' +
          '<toggl-key> ' +
          '<redmine-url> ' +
          '<redmine-key> ' +
@@ -40,6 +41,7 @@ function usage() {
 let args = [];
 let group = false;
 let wid = null;
+let pid = null;
 
 for (let i = 2; i < process.argv.length; i++) {
   let arg = process.argv[i];
@@ -51,6 +53,11 @@ for (let i = 2; i < process.argv.length; i++) {
 
   if (arg == '--wid') {
     wid = process.argv[++i]; // Fetch wid and move on
+    continue;
+  }
+
+  if (arg == '--pid') {
+    pid = process.argv[++i]; // Fetch pid and move on
     continue;
   }
 
@@ -75,6 +82,7 @@ let options = {
   'date': args[3],
   'group': group,
   'wid': wid,
+  'pid': pid,
 };
 
 // Run app
