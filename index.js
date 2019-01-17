@@ -27,12 +27,13 @@ let App = require('./lib/app');
  * @return {String}
  */
 function usage() {
-	return 'toggl2redmine ' +
+	return 'toggl2tempo ' +
          '[--group] ' +
          '[--wid <wid>]' +
          '<toggl-key> ' +
-         '<redmine-url> ' +
-         '<redmine-key> ' +
+         '<jira-url> ' +
+         '<jira-username> ' +
+         '<jira-password> ' +
          '<mm-dd-yyyy>';
 }
 
@@ -58,7 +59,7 @@ for (let i = 2; i < process.argv.length; i++) {
 }
 
 // Check arguments
-if (args.length !== 4) {
+if (args.length !== 5) {
   process.stdout.write(usage());
   process.exit(1);
 }
@@ -68,11 +69,12 @@ let options = {
   'toggl': {
     'apiKey': args[0],
   },
-  'redmine': {
+  'jira': {
     'url': args[1],
-    'apiKey': args[2],
+    'username': args[2],
+		'password': args[3],
   },
-  'date': args[3],
+  'date': args[4],
   'group': group,
   'wid': wid,
 };

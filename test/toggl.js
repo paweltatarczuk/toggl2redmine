@@ -14,11 +14,11 @@ describe('Toggl', function() {
    *   - without workspace filtering
    */
   describe('#fetchTimeEntries(false, null, callback)', function() {
-    it('should return entries without \'redmine\' tag', function() {
+    it('should return entries without \'tempo\' tag', function() {
       let timeEntries = [
         {id: 1, tags: ['sample-tag']},
-        {id: 2, tags: ['redmine']},
-        {id: 3, tags: ['sample-tag', 'redmine']},
+        {id: 2, tags: ['tempo']},
+        {id: 3, tags: ['sample-tag', 'tempo']},
       ];
 
       // Create toggl client stub
@@ -42,11 +42,11 @@ describe('Toggl', function() {
    *   - with workspace filtering
    */
   describe('#fetchTimeEntries(false, 1234, callback)', function() {
-    it('should return entries without \'redmine\' tag', function() {
+    it('should return entries without \'tempo\' tag', function() {
       let timeEntries = [
         {id: 1, wid: 1234, tags: ['sample-tag']},
-        {id: 2, wid: '1234', tags: ['redmine']},
-        {id: 3, wid: 4321, tags: ['sample-tag', 'redmine']},
+        {id: 2, wid: '1234', tags: ['tempo']},
+        {id: 3, wid: 4321, tags: ['sample-tag', 'tempo']},
       ];
 
       // Create toggl client stub
@@ -70,11 +70,11 @@ describe('Toggl', function() {
    *   - without workspace filtering
    */
   describe('#fetchTimeEntries(true, null, callback)', function() {
-    it('should return entries without \'redmine\' tag', function() {
+    it('should return entries without \'tempo\' tag', function() {
       let timeEntries = [
         {id: 1, duration: 1000, tags: ['sample-tag']},
-        {id: 2, duration: 2000, tags: ['redmine']},
-        {id: 3, duration: 500, tags: ['sample-tag', 'redmine']},
+        {id: 2, duration: 2000, tags: ['tempo']},
+        {id: 3, duration: 500, tags: ['sample-tag', 'tempo']},
         {id: 4, duration: 1200, tags: ['sample-tag']},
         {id: 5, duration: 3600},
         {id: 6, duration: 2500, tags: ['other-tag', 'sample-tag']},
@@ -105,23 +105,23 @@ describe('Toggl', function() {
   });
 
   /**
-   * Test for 'Toggl#addRedmineTagToTimeEntry' method
+   * Test for 'Toggl#addTempoTagToTimeEntry' method
    */
-  describe('#addRedmineTagToTimeEntry(timeEntry, callback)', function() {
-    it('should add \'redmine\' tag to given time entry', function() {
+  describe('#addTempoTagToTimeEntry(timeEntry, callback)', function() {
+    it('should add \'tempo\' tag to given time entry', function() {
       let data = {
         id: 4,
       };
 
       // Create toggl client stub
       let addTimeEntriesTags = sinon.stub(toggl.client, 'addTimeEntriesTags');
-      addTimeEntriesTags.withArgs([4], ['redmine']).yields(null);
+      addTimeEntriesTags.withArgs([4], ['tempo']).yields(null);
 
       // Prepare callback
       let callback = sinon.spy();
 
       // Run method under test
-      toggl.addRedmineTagToTimeEntry(data, callback);
+      toggl.addTempoTagToTimeEntry(data, callback);
 
       addTimeEntriesTags.restore();
       sinon.assert.calledWith(callback, null);

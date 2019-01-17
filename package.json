@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "async": "^2.4.0",
-    "node-redmine": "^0.1.5",
+    "request": "^2.88.0",
     "toggl-api": "^1.0.1"
   },
   "scripts": {
